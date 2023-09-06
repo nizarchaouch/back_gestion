@@ -85,7 +85,7 @@ const updateStagi = async (req, res) => {
   try {
     const id = req.params.id;
     const updateStagi = await StagiModel.findByIdAndUpdate(id, req.body, {
-      stagiFindAndModify: false,
+      useFindAndModify: false,
       new: true, // pour renvoyer le document mis à jour plutôt que l'ancien document
     });
     if (!updateStagi) {

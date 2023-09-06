@@ -108,7 +108,7 @@ const updateAdmin = async (req, res) => {
     try {
       const id = req.params.id;
       const updatedAdmin = await adminModel.findByIdAndUpdate(id, req.body, {
-        adminFindAndModify: false,
+        useFindAndModify: false,
         new: true, // pour renvoyer le document mis à jour plutôt que l'ancien document
       });
       if (!updatedAdmin) {
