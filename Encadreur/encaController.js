@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const EncaService = require("./encaModel");
 
-router.post("/addStagi", EncaService.addStagi);
-router.get("/showStagi", EncaService.showStagi);
-router.delete("/delStagi/:id", EncaService.deleteStagi);
-router.put("/updateStagi/:id", EncaService.updateStagi);
+router.post("/addEncad", EncaService.addEncad);
+router.get("/showEncad", EncaService.showEncad);
+router.delete("/delEncad/:id", EncaService.deleteEncad);
+router.put("/updateEncad/:id", EncaService.updateEncad);
 module.exports = router;
