@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var Stagiaire = new Schema({
+var Encadreur = new Schema({
   nom: String,
   prenom: String,
   mail: String,
@@ -11,4 +11,4 @@ var Stagiaire = new Schema({
   statut: Boolean,
 });
 
-module.exports = mongoose.model("stagiaire", Stagiaire);
+module.exports = mongoose.model("encadreur", Encadreur);
