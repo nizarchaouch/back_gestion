@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const StagiService = require("./stagiService");
+const EncaService = require("./encaModel");
 
-router.post("/addStagi", StagiService.addStagi);
-router.get("/showStagi", StagiService.showStagi);
-router.delete("/delStagi/:id", StagiService.deleteStagi);
-router.put("/updateStagi/:id", StagiService.updateStagi);
+router.post("/addStagi", EncaService.addStagi);
+router.get("/showStagi", EncaService.showStagi);
+router.delete("/delStagi/:id", EncaService.deleteStagi);
+router.put("/updateStagi/:id", EncaService.updateStagi);
 module.exports = router;
