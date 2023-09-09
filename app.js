@@ -1,8 +1,9 @@
 const express = require("express");
 
-var userRoutes = require("./User/userController");
 var adminRoutes = require("./Admin/adminController");
 var stagiRoutes = require("./Stagiaire/stagiController");
+var encadRoutes = require("./Encadreur/encadController");
+var offerRoutes = require("./Offer/offerController");
 
 
 const app = express();
@@ -42,8 +43,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-app.use("/User", userRoutes);
 app.use("/Admin", adminRoutes);
-app.use("/stagiaire", stagiRoutes)
+app.use("/stagiaire", stagiRoutes);
+app.use("/encadreur", encadRoutes);
+app.use("/offer", offerRoutes);
 
 app.listen(3000);

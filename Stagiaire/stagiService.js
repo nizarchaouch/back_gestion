@@ -89,7 +89,7 @@ const updateStagi = async (req, res) => {
       new: true, // pour renvoyer le document mis à jour plutôt que l'ancien document
     });
     if (!updateStagi) {
-      return res.status(404).json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
+      return res.status(404).json({ message: ERROR_MESSAGES.STAGIAIRE_NOT_FOUND });
     }
     res.json(updateStagi);
   } catch (error) {

@@ -1,4 +1,4 @@
-const EncadModel = require("./encaModel");
+const EncadModel = require("./encadModel");
 const ERROR_MESSAGES = {
   INTERNAL_SERVER_ERROR: "Internal Server Error",
   UNABLE_TO_ADD: "Unable to add",
