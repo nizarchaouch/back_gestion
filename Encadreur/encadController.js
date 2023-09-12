@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const EncaService = require("./encadModel");
+const EncaService = require("./encadService");
 
 router.post("/addEncad", EncaService.addEncad);
 router.get("/showEncad", EncaService.showEncad);

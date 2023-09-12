@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var Offer = new Schema({
-  id:Int32Array,
+  id:Number,
   titre: String,
   description: String,
 });

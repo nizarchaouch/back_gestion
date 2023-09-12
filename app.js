@@ -4,6 +4,7 @@ var adminRoutes = require("./Admin/adminController");
 var stagiRoutes = require("./Stagiaire/stagiController");
 var encadRoutes = require("./Encadreur/encadController");
 var offerRoutes = require("./Offer/offerController");
+var demandeRoutes = require("./Deamande/demaController");
 
 
 const app = express();
@@ -44,8 +45,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 app.use("/Admin", adminRoutes);
-app.use("/stagiaire", stagiRoutes);
-app.use("/encadreur", encadRoutes);
-app.use("/offer", offerRoutes);
+app.use("/Stagiaire", stagiRoutes);
+app.use("/Encadreur", encadRoutes);
+app.use("/Offer", offerRoutes);
+app.use("/Demande", demandeRoutes);
 
 app.listen(3000);

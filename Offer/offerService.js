@@ -60,10 +60,7 @@ const deleteOffer = async (req, res) => {
 const updateOffer = async (req, res) => {
   try {
     const id = req.params.id;
-    const updateOffer = await OfferModel.findByIdAndUpdate(id, req.body, {
-      useFindAndModify: false,
-      new: true, // pour renvoyer le document mis à jour plutôt que l'ancien document
-    });
+    const updateOffer = await OfferModel.findByIdAndUpdate(id, req.body);
     if (!updateOffer) {
       return res.status(404).json({ message: ERROR_MESSAGES.OFFER_NOT_FOUND});
     }

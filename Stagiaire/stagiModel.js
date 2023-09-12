@@ -2,12 +2,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var Stagiaire = new Schema({
-  id:Int32Array,
+  id:Number,
   nom: String,
   prenom: String,
   mail: String,
   tel: String,
-  datenaissance: Date,
+  datenaissance: String,
   adrress: String,
   sexe: String,
   projet: String,
@@ -15,12 +15,12 @@ var Stagiaire = new Schema({
   specialite: String,
   niveau: String,
   dureestage: String,
-  dated: Date,
-  datef: Date,
+  dated: String,
+  datef: String,
   typestage: String,
   encadrant: String,
   statut: Boolean,
-  role: Int32Array,
+  role: Number,
 });
 
 module.exports = mongoose.model("stagiaire", Stagiaire);

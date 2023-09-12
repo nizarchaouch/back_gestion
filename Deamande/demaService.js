@@ -1,73 +1,71 @@
-const StagiModel = require("./stagiModel");
+const StagiModel = require("../Stagiaire/stagiModel");
 const ERROR_MESSAGES = {
   INTERNAL_SERVER_ERROR: "Internal Server Error",
   UNABLE_TO_ADD: "Unable to add",
-  STAGIAIRE_NOT_FOUND: "Stagiaire not found",
+  DEMANDE_NOT_FOUND: "Demande not found",
 };
 
-const addStagi = async (req, res) => {
+const addDemande = async (req, res) => {
   const {
-    id,
     nom,
     prenom,
-    mail,
-    tel,
     datenaissance,
     adrress,
     sexe,
-    projet,
-    ecole,
-    specialite,
-    niveau,
+    tel,
+    mail,
     dureestage,
     dated,
     datef,
-    typestage,
+    ecole,
+    niveau,
+    specialite,
+    projet,
     encadrant,
+    typestage,
   } = req.body;
 
-  let existingStagi;
+  let existingDemande;
   try {
-    existingStagi = await StagiModel.findOne({ mail: mail });
+    existingDemande = await StagiModel.findOne({ mail: mail });
   } catch (err) {
     console.log(err);
   }
-  if (existingStagi) {
+  if (existingDemande) {
     return res.status(400).json({ message: ERROR_MESSAGES.UNABLE_TO_ADD });
   }
-  const stagiaire = new StagiModel({
-    id,
+  const demande = new StagiModel({
     nom,
     prenom,
-    mail,
-    tel,
     datenaissance,
     adrress,
     sexe,
-    projet,
-    ecole,
-    specialite,
-    niveau,
+    tel,
+    mail,
     dureestage,
     dated,
     datef,
-    typestage,
+    ecole,
+    niveau,
+    specialite,
+    projet,
     encadrant,
-    statut: true,
-    role: 1,
+    typestage,
+    statut: false,
+    role: 0,
   });
 
   try {
-    await stagiaire.save();
+    await demande.save();
   } catch (err) {
     console.log(err);
   }
 
-  return res.status(201).json({ message: stagiaire });
+  return res.status(201).json({ message: demande });
 };
 const showStagi = async (req, res) => {
   try {
-    const docs = await StagiModel.find({role:1});
+    const docs = await StagiModel.find({ role: 0 });
     res.json(docs);
   } catch (error) {
     console.error(error);
@@ -108,4 +106,4 @@ const updateStagi = async (req, res) => {
   }
 };
 
-module.exports = { addStagi, showStagi, deleteStagi, updateStagi };
+module.exports = { addDemande, showStagi, deleteStagi, updateStagi };

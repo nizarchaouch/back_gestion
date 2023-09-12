@@ -107,10 +107,7 @@ const deleteAdmin = async (req, res) => {
 const updateAdmin = async (req, res) => {
     try {
       const id = req.params.id;
-      const updatedAdmin = await adminModel.findByIdAndUpdate(id, req.body, {
-        useFindAndModify: false,
-        new: true, // pour renvoyer le document mis à jour plutôt que l'ancien document
-      });
+      const updatedAdmin = await adminModel.findByIdAndUpdate(id, req.body);
       if (!updatedAdmin) {
         return res.status(404).json({ message: ERROR_MESSAGES.ADMIN_NOT_FOUND });
       }

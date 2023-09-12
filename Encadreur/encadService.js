@@ -65,10 +65,7 @@ const deleteEncad = async (req, res) => {
 const updateEncad = async (req, res) => {
   try {
     const id = req.params.id;
-    const updateEncad = await EncadModel.findByIdAndUpdate(id, req.body, {
-      useFindAndModify: false,
-      new: true, // pour renvoyer le document mis à jour plutôt que l'ancien document
-    });
+    const updateEncad = await EncadModel.findByIdAndUpdate(id, req.body);
     if (!updateEncad) {
       return res.status(404).json({ message: ERROR_MESSAGES.ENCADREUR_NOT_FOUND });
     }
