@@ -3,7 +3,7 @@ const router = express.Router();
 const demaService = require("./demaService");
 
 router.post("/addDemande", demaService.addDemande);
-router.get("/showStagi", demaService.showStagi);
-router.delete("/delStagi/:id", demaService.deleteStagi);
-router.put("/updateStagi/:id", demaService.updateStagi);
+router.get("/showDemande", demaService.showDemande);
+router.put("/accept/:id", demaService.accept);
+router.delete("/refuse/:id", demaService.refuse);
 module.exports = router;
