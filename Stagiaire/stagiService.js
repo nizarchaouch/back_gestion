@@ -44,6 +44,7 @@ const addStagi = async (req, res) => {
     typestage,
     encadrant,
     statut: true,
+    role:1,
   });
 
   try {
