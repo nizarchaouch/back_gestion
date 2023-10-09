@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var Stagiaire = new Schema({
-  id:Number,
   nom: String,
   prenom: String,
   mail: String,

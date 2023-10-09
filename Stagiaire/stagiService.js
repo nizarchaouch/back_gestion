@@ -7,7 +7,6 @@ const ERROR_MESSAGES = {
 
 const addStagi = async (req, res) => {
   const {
-    id,
     nom,
     prenom,
     mail,
@@ -36,7 +35,6 @@ const addStagi = async (req, res) => {
     return res.status(400).json({ message: ERROR_MESSAGES.UNABLE_TO_ADD });
   }
   const stagiaire = new StagiModel({
-    id,
     nom,
     prenom,
     mail,
