@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
+app.use(cors({ credentials: true, origin: "http://localhost:8080" }));
 
 app.use(express.json());
 
@@ -35,7 +35,7 @@ const database = (module.exports = () => {
 
 database();
 app.use(cors({
-  origin: ["http://localhost:3001"],
+  origin: ["http://localhost:8080"],
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 }));
@@ -44,10 +44,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-app.use("/Admin", adminRoutes);
-app.use("/Stagiaire", stagiRoutes);
-app.use("/Encadreur", encadRoutes);
-app.use("/Offer", offerRoutes);
-app.use("/Demande", demandeRoutes);
+app.use("/admin", adminRoutes);
+app.use("/stagiaire", stagiRoutes);
+app.use("/encadreur", encadRoutes);
+app.use("/offer", offerRoutes);
+app.use("/demande", demandeRoutes);
 
-app.listen(3000);
+app.listen(8081);

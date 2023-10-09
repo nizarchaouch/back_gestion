@@ -67,7 +67,7 @@ const addStagi = async (req, res) => {
 };
 const showStagi = async (req, res) => {
   try {
-    const docs = await StagiModel.find({role:1});
+    const docs = await StagiModel.find({ role: 1 });
     res.json(docs);
   } catch (error) {
     console.error(error);
