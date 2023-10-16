@@ -6,7 +6,7 @@ const ERROR_MESSAGES = {
 };
 
 const addEncad = async (req, res) => {
-  const { nom, prenom, mail, tel, specialite, Stagiaire } = req.body;
+  const { nom, prenom, mail, tel, specialite, stagiaire } = req.body;
 
   let existingEncad;
   try {
@@ -23,7 +23,7 @@ const addEncad = async (req, res) => {
     mail,
     tel,
     specialite,
-    Stagiaire,
+    stagiaire,
     statut: true,
   });
 

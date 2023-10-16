@@ -8,7 +8,7 @@ var Encadreur = new Schema({
   mail: String,
   tel: String,
   specialite: String,
-  Stagiaire: String,
+  stagiaire: String,
   statut: Boolean,
 });
 
