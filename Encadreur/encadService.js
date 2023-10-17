@@ -56,7 +56,7 @@ const deleteEncad = async (req, res) => {
     const docs = await EncadModel.find({});
     res
       .status(200)
-      .json({ message: `Encadreur ${stagiToDelete.nom} est supprimé!`, docs });
+      .json({ message: `Encadreur ${encadToDelete.nom} est supprimé!`, docs });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
@@ -67,7 +67,9 @@ const updateEncad = async (req, res) => {
     const id = req.params.id;
     const updateEncad = await EncadModel.findByIdAndUpdate(id, req.body);
     if (!updateEncad) {
-      return res.status(404).json({ message: ERROR_MESSAGES.ENCADREUR_NOT_FOUND });
+      return res
+        .status(404)
+        .json({ message: ERROR_MESSAGES.ENCADREUR_NOT_FOUND });
     }
     res.json(updateEncad);
   } catch (error) {
@@ -75,5 +77,23 @@ const updateEncad = async (req, res) => {
     res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
   }
 };
+const statut = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const encadreur = await EncadModel.findById(id);
+    if (!encadreur) {
+      return res
+        .status(404)
+        .json({ message: ERROR_MESSAGES.ENCADREUR_NOT_FOUND });
+    }
+    encadreur.statut = !encadreur.statut;
 
-module.exports = { addEncad, showEncad, deleteEncad, updateEncad };
+    await encadreur.save();
+
+    res.json(encadreur);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
+module.exports = { addEncad, showEncad, deleteEncad, updateEncad, statut };
