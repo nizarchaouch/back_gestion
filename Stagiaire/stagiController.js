@@ -6,4 +6,5 @@ router.post("/addStagi", StagiService.addStagi);
 router.get("/showStagi", StagiService.showStagi);
 router.delete("/delStagi/:id", StagiService.deleteStagi);
 router.put("/updateStagi/:id", StagiService.updateStagi);
+router.put("/statut/:id", StagiService.statut)
 module.exports = router;

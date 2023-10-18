@@ -105,5 +105,24 @@ const updateStagi = async (req, res) => {
     res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
   }
 };
+const statut = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const stagiaire = await StagiModel.findById(id);
+    if (!stagiaire) {
+      return res
+        .status(404)
+        .json({ message: ERROR_MESSAGES.ENCADREUR_NOT_FOUND });
+    }
+    stagiaire.statut = !stagiaire.statut;
 
-module.exports = { addStagi, showStagi, deleteStagi, updateStagi };
+    await stagiaire.save();
+
+    res.json(stagiaire);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
+
+module.exports = { addStagi, showStagi, deleteStagi, updateStagi,statut };
