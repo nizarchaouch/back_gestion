@@ -2,14 +2,12 @@ var mongoose=require("mongoose")
 var Schema=mongoose.Schema
 
 var Admin=new Schema({
-    id:Number,
     nom:String,
     prenom:String,
     mail:String,
     tel:String,
     mdp:String,
     role:String,
-
     token:{
         type:String,
     },

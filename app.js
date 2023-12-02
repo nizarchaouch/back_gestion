@@ -5,6 +5,7 @@ var stagiRoutes = require("./Stagiaire/stagiController");
 var encadRoutes = require("./Encadreur/encadController");
 var offerRoutes = require("./Offer/offerController");
 var demandeRoutes = require("./Deamande/demaController");
+var assignerRoutes = require("./Assigner/assignerController");
 
 
 const app = express();
@@ -49,5 +50,6 @@ app.use("/stagiaire", stagiRoutes);
 app.use("/encadreur", encadRoutes);
 app.use("/offer", offerRoutes);
 app.use("/demande", demandeRoutes);
+// app.use("/assigner", assignerRoutes);
 
 app.listen(8081);
