@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const FormService = require("./formService");
 
-router.post("/addForm", FormService.addForm);
+router.get("/showForm", FormService.showForm);
+router.put("/addForm/:id", FormService.addForm);
 
 module.exports = router;
