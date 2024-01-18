@@ -72,6 +72,16 @@ const showStagi = async (req, res) => {
     res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
   }
 };
+const showStagiId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const docs = await StagiModel.findById(id, req.body);
+    res.json(docs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
 const deleteStagi = async (req, res) => {
   try {
     const stagiToDelete = await StagiModel.findById(req.params.id, "nom");
@@ -125,4 +135,11 @@ const statut = async (req, res) => {
   }
 };
 
-module.exports = { addStagi, showStagi, deleteStagi, updateStagi,statut };
+module.exports = {
+  addStagi,
+  showStagi,
+  showStagiId,
+  deleteStagi,
+  updateStagi,
+  statut,
+};
