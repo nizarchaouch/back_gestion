@@ -8,12 +8,11 @@ var demandeRoutes = require("./Deamande/demaController");
 var assignerRoutes = require("./Assigner/assignerController");
 var formRoutes = require("./Form/formController");
 
-
 const app = express();
 const mongoose = require("mongoose");
 
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 app.use(cors({ credentials: true, origin: "http://localhost:8080" }));
 
@@ -25,9 +24,7 @@ const database = (module.exports = () => {
     useUnifiedTopology: true,
   };
   try {
-    mongoose.connect(
-      "mongodb://127.0.0.1:27017/gestion"
-    );
+    mongoose.connect("mongodb://127.0.0.1:27017/gestion");
     console.log("Database connected succesfully");
   } catch (error) {
     console.log(error);
@@ -36,22 +33,24 @@ const database = (module.exports = () => {
 });
 
 database();
-app.use(cors({
-  origin: ["http://localhost:8080"],
-  methods: "GET,POST,PUT,DELETE",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:8080"],
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use("/admin", adminRoutes);
 app.use("/stagiaire", stagiRoutes);
 app.use("/encadreur", encadRoutes);
 app.use("/offer", offerRoutes);
 app.use("/demande", demandeRoutes);
 app.use("/form", formRoutes);
-// app.use("/assigner", assignerRoutes);
+app.use("/assigner", assignerRoutes);
 
 app.listen(8081);
