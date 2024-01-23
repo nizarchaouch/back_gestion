@@ -23,8 +23,17 @@ const addAssg = async (req, res) => {
     console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
   }
-
-  //return res.status(201).json({ message: assg });
 };
 
-module.exports = { addAssg };
+const showAssg = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const docs = await assgineModel.find({ idStag: id });
+    res.status(200).json(docs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
+
+module.exports = { addAssg, showAssg };

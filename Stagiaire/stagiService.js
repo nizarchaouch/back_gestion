@@ -76,7 +76,7 @@ const showStagiId = async (req, res) => {
   try {
     const id = req.params.id;
     const docs = await StagiModel.findById(id, req.body);
-    res.json(docs);
+    res.status(200).json(docs);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
