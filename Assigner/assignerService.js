@@ -1,10 +1,8 @@
 const assgineModel = require("./assignerModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const ERROR_MESSAGES = {
   INTERNAL_SERVER_ERROR: "Internal Server Error",
   UNABLE_TO_ADD: "Unable to add",
-  ASSIGNE_NOT_FOUND: "Assgine not found",
+  ASSIGNE_NOT_FOUND: "Assignment not found",
 };
 
 const addAssg = async (req, res) => {
@@ -36,4 +34,23 @@ const showAssg = async (req, res) => {
   }
 };
 
-module.exports = { addAssg, showAssg };
+const deleteAssg = async (req, res) => {
+  try {
+    const assgToDelete = await assgineModel.findById(req.params.id);
+    if (!assgToDelete) {
+      return res
+        .status(404)
+        .json({ message: ERROR_MESSAGES.ASSIGNE_NOT_FOUND });
+    }
+    await assgineModel.findByIdAndDelete(req.params.id);
+    const docs = await assgineModel.find({});
+    res
+      .status(200)
+      .json({ message: `Assignment est supprimé!`, docs });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
+
+module.exports = { addAssg, showAssg, deleteAssg };
