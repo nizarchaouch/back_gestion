@@ -27,8 +27,8 @@ const addAssg = async (req, res) => {
 
 const showAssg = async (req, res) => {
   try {
-    const id = req.params.id;
-    const docs = await assgineModel.find({ idStag: id });
+    // const id = req.params.id;
+    const docs = await assgineModel.find(/* { idStag: id } */);
     res.status(200).json(docs);
   } catch (error) {
     console.error(error);

@@ -3,7 +3,7 @@ const router = express.Router();
 const assigService = require("./assignerService");
 
 router.post("/AddAssg", assigService.addAssg);
-router.get("/ShowAssg/:id", assigService.showAssg);
+router.get("/ShowAssg", assigService.showAssg);
 
 
 module.exports = router;
