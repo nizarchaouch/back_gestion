@@ -39,7 +39,6 @@ const addAdmin = async (req, res) => {
 
   return res.status(201).json({ message: admin });
 };
-
 const login = async (req, res) => {
   data = req.body;
   mail = await adminModel.findOne({ mail: data.mail });
