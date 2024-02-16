@@ -8,7 +8,6 @@ router.post("/login", adminService.login);
 router.get("/showAdmin", adminService.showAdmins);
 router.delete("/delAdmin/:id", adminService.deleteAdmin);
 router.put("/updateAdmin/:id", adminService.updateAdmin);
-
-
+router.put("/statut/:id", adminService.statut);
 
 module.exports = router;

@@ -20,6 +20,7 @@ var Stagiaire = new Schema({
   encadrant: String,
   statut: Boolean,
   role: Number,
+  imagePath: String
 });
 
 module.exports = mongoose.model("stagiaire", Stagiaire);

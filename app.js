@@ -1,4 +1,6 @@
 const express = require("express");
+const multer = require("multer");
+const path = require("path");
 
 var adminRoutes = require("./Admin/adminController");
 var stagiRoutes = require("./Stagiaire/stagiController");
@@ -52,5 +54,36 @@ app.use("/offer", offerRoutes);
 app.use("/demande", demandeRoutes);
 app.use("/form", formRoutes);
 app.use("/assigner", assignerRoutes);
+/////////////////
+const storage = multer.diskStorage({
+  destination : function(req, file, cb) {
+    cb(null, './public');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname))
+  } 
+});
 
-app.listen(8081);
+const upload = multer({storage : storage})
+
+app.post('/upload', upload.single('image'), async (req, res) => {
+  // console.log(req);
+  try {
+    if(req.file) {
+      const imagepath = req.file.path.replace(/\\/g, '/').replace('public','');
+
+      res.json({
+        message : 'DONE !',
+        imagepath : imagepath.replace('src/', '')
+      })
+    }else {
+      res.json({message : 'file didnt uploaded'})
+    }
+  }catch(err) {
+    res.json({message : 'error', error : er})
+  }
+});
+
+app.listen(8081, () => {
+  console.log('server listing on PORT : ', 8081);
+});

@@ -23,6 +23,7 @@ const addStagi = async (req, res) => {
     datef,
     typestage,
     encadrant,
+    imagePath,
   } = req.body;
 
   let existingStagi;
@@ -53,6 +54,7 @@ const addStagi = async (req, res) => {
     encadrant,
     statut: true,
     role: 1,
+    imagePath,
   });
 
   try {

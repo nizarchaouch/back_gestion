@@ -104,17 +104,42 @@ const deleteAdmin = async (req, res) => {
   }
 };
 const updateAdmin = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const updatedAdmin = await adminModel.findByIdAndUpdate(id, req.body);
-      if (!updatedAdmin) {
-        return res.status(404).json({ message: ERROR_MESSAGES.ADMIN_NOT_FOUND });
-      }
-      res.json(updatedAdmin);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  try {
+    const id = req.params.id;
+    const updatedAdmin = await adminModel.findByIdAndUpdate(id, req.body);
+    if (!updatedAdmin) {
+      return res.status(404).json({ message: ERROR_MESSAGES.ADMIN_NOT_FOUND });
     }
-  };
+    res.json(updatedAdmin);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
+const statut = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const admin = await adminModel.findById(id);
+    if (!admin) {
+      return res
+        .status(404)
+        .json({ message: ERROR_MESSAGES.ADMIN_NOT_FOUND });
+    }
+    admin.statut = !admin.statut;
 
-module.exports = { login, addAdmin, showAdmins, deleteAdmin, updateAdmin };
+    await admin.save();
+
+    res.json(admin);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+  }
+};
+module.exports = {
+  login,
+  addAdmin,
+  showAdmins,
+  deleteAdmin,
+  updateAdmin,
+  statut,
+};
